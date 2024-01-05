@@ -1,0 +1,40 @@
+<!-- app/views/tasks/index.html.erb -->
+
+<div class="container mx-auto my-8">
+  <nav class="bg-gray-800 p-4 mb-6">
+    <div class="flex items-center justify-between">
+      <div class="text-white font-bold text-xl">TaskTrack</div>
+      <div class="flex space-x-4">
+        <%= link_to 'Your Tasks', tasks_path, class: 'text-white hover:text-gray-400' %>
+        <%= link_to 'New Task', new_task_path, class: 'text-white hover:text-gray-400' %>
+        <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'text-white hover:text-gray-400', 'data-turbolinks-action': 'replace' %>
+      </div>
+    </div>
+  </nav>
+
+  <h1 class="text-4xl font-bold mb-6">Your Tasks</h1>
+
+  <table class="min-w-full bg-white border border-gray-300">
+    <thead>
+      <tr>
+        <th class="py-2 px-4 border-b text-center align-middle">Title</th>
+        <th class="py-2 px-4 border-b text-center align-middle">Description</th>
+        <th class="py-2 px-4 border-b text-center align-middle">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @tasks.each do |task| %>
+        <tr>
+          <td class="py-2 px-4 border-b text-center align-middle"><%= task.title %></td>
+          <td class="py-2 px-4 border-b text-center align-middle"><%= task.description %></td>
+          <td class="py-2 px-4 border-b text-center align-middle">
+            <%= link_to 'Edit', edit_task_path(task), class: 'bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded inline-block' %>
+            <%= link_to 'Delete', task, method: :delete, data: { confirm: 'Are you sure?' }, class: 'bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded inline-block ml-2' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= link_to 'New Task', new_task_path, class: 'bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded mt-4 inline-block' %>
+</div>

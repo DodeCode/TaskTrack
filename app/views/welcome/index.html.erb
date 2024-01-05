@@ -1,0 +1,14 @@
+<!-- app/views/welcome/index.html.erb -->
+
+<div class="container mx-auto my-8 text-center">
+  <% if user_signed_in? %>
+    <h1 class="text-4xl font-bold mb-6">Welcome back, <%= current_user.name %>!</h1>
+    <%= link_to 'Go to Tasks', tasks_path, class: 'bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded mt-4 inline-block' %>
+  <% else %>
+    <h1 class="text-4xl font-bold mb-6">Welcome to TaskTrack</h1>
+    <p class="text-lg">Your personalized task management platform</p>
+
+    <%= link_to 'Sign Up', new_user_registration_path, class: 'bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded mt-4 inline-block' %>
+    <%= link_to 'Log In', new_user_session_path, class: 'bg-green-500 hover:bg-green-700 text-white py-2 px-4 rounded mt-4 inline-block ml-4' %>
+  <% end %>
+</div>
